@@ -1,7 +1,11 @@
 package hiwotab.invoiceapps.Controllers;
+import hiwotab.invoiceapps.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 @Controller
 public class appController {
 
@@ -20,12 +24,22 @@ public class appController {
         return "index";
     }
     @GetMapping("/addproduct")
-    public String addproductDisp(Model model)
+    public String addproductDispForm(Model model)
     {
-        String message="Add a product here";
-        model.addAttribute("myMessage", message);
+        model.addAttribute("index", new Product());
         return "index";
     }
+    @PostMapping("/addproduct")
+    public String addproductDispSubmit(@ModelAttribute Product product) {
+        return "result";
+    }
+    @GetMapping("/showproductdetails")
+    public String showProduct(@ModelAttribute Product product)
+    {
+
+        return "result";
+    }
+
     @GetMapping("/listproducts")
     public String listproductDisp(Model model)
     {
